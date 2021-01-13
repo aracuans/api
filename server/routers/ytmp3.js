@@ -7,7 +7,7 @@ async function getYtmp3(URL) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://ytmp3.cc/en13/');
+    await page.goto('https://www.y2mate.com/en30/youtube-mp3/');
 
     await page.type('#txt-url', `${URL}`);
 	await page.click('#process_mp3', {delay: 300});
