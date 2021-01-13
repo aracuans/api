@@ -11,9 +11,10 @@ async function getYtmp3(URL) {
 
     await page.type('#txt-url', `${URL}`);
 	await page.click('#btn-submit', {delay: 300});
+	await page.click('#process_mp3_a');
 
-    await page.waitForSelector('#result > div > div.col-xs-12.col-sm-7.col-md-7 > ul > li:nth-child(2) > process-result > div > a');
-    let getVideo = await page.$eval('#result > div > div.col-xs-12.col-sm-7.col-md-7 > ul > li:nth-child(2) > process-result > div > a', (element) => {
+    await page.waitForSelector('#process-result > div > a');
+    let getVideo = await page.$eval('#process-result > div > a', (element) => {
         return element.getAttribute('href');
     });
     let titleInfo = await page.$eval('#result > div > div.col-xs-12.col-sm-5.col-md-5 > div.thumbnail.cover > div > b', el => el.innerText);
