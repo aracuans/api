@@ -9,14 +9,14 @@ async function getYtmp3(URL) {
     const page = await browser.newPage();
     await page.goto('https://ytmp3.cc/en13/');
 
-    await page.type('#input', `${URL}`);
-	await page.click('#submit', {delay: 300});
+    await page.type('#txt-url', `${URL}`);
+	await page.click('#process_mp3', {delay: 300});
 
-    await page.waitForSelector('#buttons > a:nth-child(1)');
-    let getVideo = await page.$eval('#buttons > a:nth-child(1)', (element) => {
+    await page.waitForSelector('#process-result > div > a');
+    let getVideo = await page.$eval('#process-result > div > a', (element) => {
         return element.getAttribute('href');
     });
-    let titleInfo = await page.$eval('#title', el => el.innerText);
+    let titleInfo = await page.$eval('#result > div > div.col-xs-12.col-sm-7.col-md-8 > div > b', el => el.innerText);
 	browser.close()
     return { getVideo, titleInfo }
 }
