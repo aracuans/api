@@ -7,17 +7,16 @@ async function getYtmp3(URL) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://www.y2mate.com/');
+    await page.goto('https://ytmp3.cc/en13/');
 
-    await page.type('#txt-url', `${URL}`);
-	await page.click('#btn-submit', {delay: 300});
-	await page.click('#process_mp3_a');
+    await page.type('#input', `${URL}`);
+	await page.click('#submit', {delay: 300});
 
-    await page.waitForSelector('#process-result > div > a');
-    let getVideo = await page.$eval('#process-result > div > a', (element) => {
+    await page.waitForSelector('#buttons > a:nth-child(1)');
+    let getVideo = await page.$eval('#buttons > a:nth-child(1)', (element) => {
         return element.getAttribute('href');
     });
-    let titleInfo = await page.$eval('#result > div > div.col-xs-12.col-sm-5.col-md-5 > div.thumbnail.cover > div > b', el => el.innerText);
+    let titleInfo = await page.$eval('#title', el => el.innerText);
 	browser.close()
     return { getVideo, titleInfo }
 }
