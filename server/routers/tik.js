@@ -12,8 +12,8 @@ async function getVideo(URL) {
     await page.type('#url', `${URL}`);
     await page.click('#send', { delay: 300 });
 
-    await page.waitForSelector('#download-block > div > a:nth-child(3)', {delay: 300});
-    let mp4direct = await page.$eval("#download-block > div > a:nth-child(3)", (element) => {
+    await page.waitForSelector('#download-block > div > a:nth-child(1)', {delay: 300});
+    let mp4direct = await page.$eval("#download-block > div > a:nth-child(1)", (element) => {
         return element.getAttribute("href");
     });
     let image = await page.$eval("#div_download > section > div > div > div > article > div.zhay-left.left > img", (element) => {
