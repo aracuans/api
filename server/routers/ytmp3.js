@@ -7,7 +7,7 @@ async function getYtmp3(URL) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://keepv.id/');
+    await page.goto('https://ytmp3.work/');
 
     await page.type('#url', `${URL}`);
 	await page.click('#send', {delay: 300});
