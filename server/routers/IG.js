@@ -7,13 +7,13 @@ async function ig(URL) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://downloadgram.com/');
+    await page.goto('https://www.w3toys.com/');
 
-    await page.type('#dg-url', `${URL}`);
-	await page.click('#dg-submit', {delay: 300});
+    await page.type('#link', `${URL}`);
+	await page.click('#submit', {delay: 300});
 
-    await page.waitForSelector('#results > div > a', {delay: 300});
-    let getData = await page.$eval('#results > div > a', (element) => {
+    await page.waitForSelector('#content > div > div > a:nth-child(4)', {delay: 300});
+    let getData = await page.$eval('#content > div > div > a:nth-child(4)', (element) => {
         return element.getAttribute('href');
     });
 	browser.close();
