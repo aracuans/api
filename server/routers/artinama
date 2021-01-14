@@ -1,0 +1,28 @@
+const artinama = require('express').Router();
+const puppeteer = require("puppeteer");
+
+async function artinama(query) {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    const page = await browser.newPage();
+    await page.goto('https://www.primbon.com/arti_nama.htm');
+
+    await page.type('#body > table:nth-child(5) > tbody > tr:nth-child(1) > td:nth-child(2) > input[type=text]', `${query}`);
+    await page.click('#body > table:nth-child(9) > tbody > tr:nth-child(2) > td:nth-child(2) > input[type=submit]', {delay: 300});
+    await page.waitForSelector('#body > b:nth-child(4) > i');
+    let nama = await page.$eval('#body > b:nth-child(4) > i', el => el.innerText);
+    await page.waitForSelector('#body > b:nth-child(4) > i > br > br');
+    let arti = await page.$eval('#body > b:nth-child(4) > i > br > br', el => el.innerText);
+	browser.close();
+    return { nama, arti }
+}
+
+artinama.get('/', async (req, res) => {
+    var query = req.query.query;
+    const gets = await artinama(query);
+    res.json(gets)
+});
+
+module.exports = artinama;
