@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use('/events', eventsRouter);
-app.use('api/tiktok', tiktok);
+app.use('/api/tiktok', tiktok);
 app.use('/ytvid', youtube);
 app.use('/ytmus', ytmus);
 app.use('/ige', ige);
