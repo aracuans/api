@@ -10,7 +10,6 @@ var film = require('./server/routers/film');
 var twvid = require('./server/routers/twvid');
 var twimg = require('./server/routers/twimg');
 var ytmp3 = require('./server/routers/ytmp3');
-var artinama = require('./server/routers/artinama');
 
 var app = express();
 const PORT = process.env.PORT || 80;
@@ -39,7 +38,7 @@ app.use('/twimg', twimg);
 app.use('/twvid', twvid);
 app.use('/film', film);
 app.use('/ytmp3', ytmp3);
-app.use('/api/artinama', artinama);
+
 
 app.listen(PORT, () => {
     console.log(`Server Run on port ${PORT}`)
