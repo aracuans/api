@@ -22,7 +22,7 @@ async function ytMusic(URL) {
         return element.getAttribute('href');
     });
     let titleInfo = await page.$eval('body > div:nth-child(1) > div:nth-child(4) > div > div.col-md-9 > p:nth-child(1)', el => el.innerText);
-    let sizeInfo = await page.$eval('body > div:nth-child(1) > div:nth-child(4) > div > div.col-md-9 > p:nth-child(2)', el => el.innerText); */
+    let sizeInfo = await page.$eval('body > div:nth-child(1) > div:nth-child(4) > div > div.col-md-9 > p:nth-child(2)', el => el.innerText);
 	browser.close();
     return { thumb, LinkAudio, titleInfo, sizeInfo }
 }
