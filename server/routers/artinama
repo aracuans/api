@@ -20,7 +20,7 @@ async function artinama(text) {
 }
 
 artinama.get('/', async (req, res) => {
-    var texxt = req.query.text;
+    var text = req.query.text;
     const gets = await artinama(text);
     res.json(gets)
 });
